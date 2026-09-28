@@ -1,1 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - Play Store</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
 
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-logo">▶</div>
+      <span>Play Admin</span>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="#dashboard" class="nav-link" data-route="dashboard">
+        <span class="nav-icon">📊</span> Dashboard
+      </a>
+      <a href="#apps" class="nav-link" data-route="apps">
+        <span class="nav-icon">📱</span> Apps
+      </a>
+      <a href="#categories" class="nav-link" data-route="categories">
+        <span class="nav-icon">📂</span> Categories
+      </a>
+      <a href="#settings" class="nav-link" data-route="settings">
+        <span class="nav-icon">⚙️</span> Settings
+      </a>
+      <a href="#" class="nav-link" id="logout-btn">
+        <span class="nav-icon">🚪</span> Logout
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <button class="hamburger" id="hamburger">☰</button>
+    <h2 class="page-title" id="page-title">Dashboard</h2>
+    <div class="topbar-right">
+      <button class="btn btn-ghost" id="theme-toggle" title="Toggle theme">🌙</button>
+      <div class="user-chip">
+        <div class="user-avatar" id="user-avatar">A</div>
+        <span id="user-email">admin@example.com</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- ============ DASHBOARD ============ -->
+    <section class="route" id="route-dashboard">
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-icon">📱</div><div><div class="stat-value" id="stat-total">0</div><div class="stat-label">Total Apps</div></div></div>
+        <div class="stat-card"><div class="stat-icon">✅</div><div><div class="stat-value" id="stat-published">0</div><div class="stat-label">Published</div></div></div>
+        <div class="stat-card"><div class="stat-icon">📝</div><div><div class="stat-value" id="stat-draft">0</div><div class="stat-label">Drafts</div></div></div>
+        <div class="stat-card"><div class="stat-icon">📂</div><div><div class="stat-value" id="stat-categories">0</div><div class="stat-label">Categories</div></div></div>
+      </div>
+
+      <div class="dashboard-actions">
+        <button class="btn btn-primary" id="quick-add-btn">+ Quick Add App</button>
+      </div>
+
+      <div class="dashboard-splits">
+        <div class="panel">
+          <div class="panel-header"><h3>Recently Added</h3></div>
+          <div class="panel-body" id="recent-added"><div class="empty">Loading…</div></div>
+        </div>
+        <div class="panel">
+          <div class="panel-header"><h3>Recently Updated</h3></div>
+          <div class="panel-body" id="recent-updated"><div class="empty">Loading…</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ APPS ============ -->
+    <section class="route" id="route-apps" hidden>
+      <div class="toolbar">
+        <input type="text" id="apps-search" class="input" placeholder="Search by name, developer, package…" />
+        <select id="filter-category" class="input"><option value="">All Categories</option></select>
+        <select id="filter-status" class="input">
+          <option value="">All Status</option>
+          <option value="published">Published</option>
+          <option value="draft">Draft</option>
+        </select>
+        <select id="filter-featured" class="input">
+          <option value="">Featured: All</option>
+          <option value="true">Featured Only</option>
+          <option value="false">Not Featured</option>
+        </select>
+        <select id="sort-by" class="input">
+          <option value="newest">Newest</option>
+          <option value="oldest">Oldest</option>
+          <option value="name-asc">Name A–Z</option>
+          <option value="name-desc">Name Z–A</option>
+          <option value="rating">Rating</option>
+        </select>
+        <button class="btn btn-primary" id="add-app-btn">+ Add App</button>
+      </div>
+      <div class="apps-list" id="apps-list"><div class="empty">Loading…</div></div>
+    </section>
+
+    <!-- ============ APP FORM ============ -->
+    <section class="route" id="route-app-form" hidden>
+      <form id="app-form" class="app-form">
+        <input type="hidden" id="app-id" />
+
+        <!-- BASIC -->
+        <fieldset class="form-section">
+          <legend>Basic Information</legend>
+          <div class="form-group">
+            <label>App Name <span class="req">*</span></label>
+            <input type="text" id="f-name" required placeholder="e.g. Kafi TV" />
+          </div>
+          <div class="form-group">
+            <label>Short Description</label>
+            <input type="text" id="f-shortDescription" maxlength="160" placeholder="One-line summary" />
+          </div>
+          <div class="form-group">
+            <label>Description <span class="req">*</span></label>
+            <textarea id="f-description" rows="6" required placeholder="Full app description…"></textarea>
+          </div>
+        </fieldset>
+
+        <!-- MEDIA -->
+        <fieldset class="form-section">
+          <legend>Media</legend>
+          <div class="form-group">
+            <label>App Icon <span class="req">*</span></label>
+            <div class="upload-row">
+              <input type="url" id="f-icon" required placeholder="https://example.com/icon.png or upload →" />
+              <label class="btn btn-outline btn-sm upload-btn">
+                📷 Upload
+                <input type="file" id="icon-upload" accept="image/*" hidden />
+              </label>
+            </div>
+            <div class="img-preview" id="icon-preview"><span class="muted">Preview appears here</span></div>
+          </div>
+          <div class="form-group">
+            <label>Screenshots (URL or Upload)</label>
+            <div id="screenshots-list"></div>
+            <button type="button" class="btn btn-ghost" id="add-screenshot-btn">+ Add Screenshot</button>
+          </div>
+        </fieldset>
+
+        <!-- DOWNLOAD -->
+        <fieldset class="form-section">
+          <legend>Download</legend>
+          <div class="form-group">
+            <label>Download URL (APK or hosted link) <span class="req">*</span></label>
+            <input type="url" id="f-downloadUrl" required placeholder="https://example.com/app.apk" />
+          </div>
+        </fieldset>
+
+        <!-- APP INFO -->
+        <fieldset class="form-section">
+          <legend>App Information</legend>
+          <div class="grid-2">
+            <div class="form-group"><label>Version</label><input type="text" id="f-version" placeholder="1.0.0" /></div>
+            <div class="form-group"><label>App Size</label><input type="text" id="f-size" placeholder="25 MB" /></div>
+            <div class="form-group"><label>Developer</label><input type="text" id="f-developer" placeholder="Md Abdullah Al Kafi" /></div>
+            <div class="form-group"><label>Package Name</label><input type="text" id="f-packageName" placeholder="com.example.app" /></div>
+            <div class="form-group"><label>Min Android Version</label><input type="text" id="f-minAndroidVersion" placeholder="Android 8.0+" /></div>
+          </div>
+        </fieldset>
+
+        <!-- CATEGORY + TYPE -->
+        <fieldset class="form-section">
+          <legend>Categorization</legend>
+          <div class="grid-2">
+            <div class="form-group">
+              <label>Category <span class="req">*</span></label>
+              <select id="f-category" required></select>
+            </div>
+            <div class="form-group">
+              <label>Type <span class="req">*</span></label>
+              <select id="f-type" required>
+                <option value="app">App</option>
+                <option value="game">Game</option>
+                <option value="movie">Movie</option>
+                <option value="book">Book</option>
+                <option value="kids">Kids</option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+
+        <!-- EXTRA -->
+        <fieldset class="form-section">
+          <legend>Additional Information</legend>
+          <div class="grid-2">
+            <div class="form-group"><label>Rating</label><input type="number" step="0.1" min="0" max="5" id="f-rating" placeholder="4.5" /></div>
+            <div class="form-group"><label>Downloads</label><input type="number" id="f-downloads" placeholder="10000" /></div>
+            <div class="form-group"><label>Developer Website</label><input type="url" id="f-developerWebsite" placeholder="https://..." /></div>
+            <div class="form-group"><label>Privacy Policy URL</label><input type="url" id="f-privacyUrl" placeholder="https://..." /></div>
+          </div>
+          <div class="form-group"><label>Release Notes</label><textarea id="f-releaseNotes" rows="3"></textarea></div>
+          <div class="form-group"><label>Tags (comma separated)</label><input type="text" id="f-tags" placeholder="TV, Live TV, Entertainment" /></div>
+        </fieldset>
+
+        <!-- PUBLISH -->
+        <fieldset class="form-section">
+          <legend>Publishing</legend>
+          <div class="form-group checkbox-group">
+            <label><input type="checkbox" id="f-featured" /> Featured</label>
+            <label><input type="checkbox" id="f-popular" /> Popular</label>
+            <label><input type="checkbox" id="f-new" /> New</label>
+          </div>
+          <div class="form-group">
+            <label>Status</label>
+            <select id="f-status">
+              <option value="published">Published</option>
+              <option value="draft">Draft</option>
+            </select>
+          </div>
+        </fieldset>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-ghost" id="cancel-form-btn">Cancel</button>
+          <button type="button" class="btn btn-outline" id="preview-btn">Preview</button>
+          <button type="submit" class="btn btn-primary" id="save-btn">Save App</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- ============ CATEGORIES ============ -->
+    <section class="route" id="route-categories" hidden>
+      <div class="panel">
+        <div class="panel-header">
+          <h3>Categories</h3>
+          <button class="btn btn-ghost" id="reset-categories">Reset to Default</button>
+        </div>
+        <div class="panel-body">
+          <p class="muted">Categories are stored in <code>localStorage</code>. Edit them below, one per line.</p>
+          <textarea id="categories-editor" rows="14" class="input textarea-full"></textarea>
+          <button class="btn btn-primary" id="save-categories" style="margin-top:12px;">Save Categories</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SETTINGS ============ -->
+    <section class="route" id="route-settings" hidden>
+      <div class="panel">
+        <div class="panel-header"><h3>Settings</h3></div>
+        <div class="panel-body">
+          <div class="form-group"><label>Signed in as</label><input class="input" id="settings-email" readonly /></div>
+          <div class="form-group"><label>UID</label><input class="input" id="settings-uid" readonly /></div>
+          <p class="muted">Admin access requires a Firestore document <code>admins/{your-UID}</code>. Publish the included <code>firestore.rules</code> first.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Confirm dialog -->
+  <div class="modal-overlay" id="confirm-modal" hidden>
+    <div class="modal">
+      <h3 id="confirm-title">Confirm</h3>
+      <p id="confirm-message">Are you sure?</p>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="confirm-cancel">Cancel</button>
+        <button class="btn btn-danger" id="confirm-ok">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Preview modal -->
+  <div class="modal-overlay" id="preview-modal" hidden>
+    <div class="modal modal-lg">
+      <button class="modal-close" id="preview-close">×</button>
+      <div id="preview-content"></div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script type="module" src="js/auth.js"></script>
+  <script type="module" src="js/dashboard.js"></script>
+  <script type="module" src="js/apps.js"></script>
+  <script type="module" src="js/app-form.js"></script>
+</body>
+</html>
