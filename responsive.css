@@ -1,0 +1,187 @@
+/* =========================================================
+   PlayMarket – Responsive overrides
+   ========================================================= */
+
+/* Tablet */
+@media (min-width: 600px) {
+  .topbar {
+    padding: 12px 24px;
+  }
+
+  .pills {
+    padding: 8px 24px 12px;
+  }
+
+  .sec-h {
+    padding: 0 24px 12px;
+  }
+
+  .row {
+    padding: 0 24px 6px;
+  }
+
+  .list {
+    padding: 0 24px;
+  }
+
+  .hero {
+    margin: 16px 24px 24px;
+    height: 200px;
+  }
+
+  .about {
+    padding: 4px 24px 24px;
+  }
+
+  .cta-row {
+    padding: 16px 24px;
+  }
+
+  .shots {
+    padding: 8px 24px 16px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 20px;
+    padding: 8px 24px 24px;
+  }
+
+  .app-card {
+    width: 120px;
+  }
+
+  .app-icon {
+    width: 120px;
+    height: 120px;
+  }
+
+  .cat-grid {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 8px 24px 24px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 900px) {
+  :root {
+    --nav-h: 0px;
+  }
+
+  body {
+    background: #e8eaed;
+  }
+
+  #app {
+    min-height: 100vh;
+    box-shadow: 0 0 0 1px var(--line);
+    background: var(--bg);
+  }
+
+  /* Desktop sidebar-style top nav instead of bottom */
+  .bottom-nav {
+    display: none;
+  }
+
+  .brand {
+    display: flex;
+  }
+
+  .desktop-nav {
+    display: flex !important;
+    align-items: center;
+    gap: 4px;
+    margin-left: 16px;
+  }
+
+  .desktop-nav button {
+    border: 0;
+    background: transparent;
+    color: var(--ink-2);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+
+  .desktop-nav button.on {
+    background: var(--green-soft);
+    color: var(--green);
+  }
+
+  .main {
+    padding-bottom: 40px;
+  }
+
+  .hero {
+    height: 240px;
+    margin: 20px 32px 28px;
+  }
+
+  .sec-h {
+    padding: 0 32px 14px;
+  }
+
+  .row {
+    padding: 0 32px 8px;
+    gap: 18px;
+  }
+
+  .list {
+    padding: 0 32px;
+    max-width: 720px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+    padding: 8px 32px 32px;
+    gap: 24px;
+  }
+
+  .app-card {
+    width: 132px;
+  }
+
+  .app-icon {
+    width: 132px;
+    height: 132px;
+    border-radius: 26px;
+  }
+
+  .topbar {
+    padding: 12px 32px;
+  }
+
+  .pills {
+    padding: 8px 32px 14px;
+  }
+
+  .overlay {
+    border-left: 1px solid var(--line);
+    border-right: 1px solid var(--line);
+  }
+
+  .cat-grid {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 8px 32px 32px;
+  }
+
+  .detail-hero {
+    height: 280px;
+  }
+}
+
+/* Large desktop */
+@media (min-width: 1200px) {
+  .hero {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: calc(var(--max-w) - 64px);
+  }
+}
+
+/* Hide desktop nav by default (mobile) */
+.desktop-nav {
+  display: none;
+}
