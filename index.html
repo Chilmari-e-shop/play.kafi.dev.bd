@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>PlayMarket</title>
+  <meta name="description" content="Discover apps, games, movies, books and more on PlayMarket." />
+  <meta property="og:title" content="PlayMarket" />
+  <meta property="og:description" content="Discover apps, games, movies, books and more." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#01875f" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Top bar -->
+    <header class="topbar" id="topbar">
+      <a href="/" class="brand" data-link>
+        <span class="logo-mark">P</span>
+        PlayMarket
+      </a>
+      <nav class="desktop-nav" id="desktopNav" aria-label="Main"></nav>
+      <div class="search-trigger" id="searchTrigger" role="button" tabindex="0" aria-label="Search">
+        <span class="material-symbols-outlined">search</span>
+        <p>Search for apps &amp; games</p>
+      </div>
+      <button type="button" class="avatar" id="avatarBtn" data-avatar title="Account">G</button>
+    </header>
+
+    <!-- Category pills -->
+    <div class="pills" id="pills" role="tablist"></div>
+
+    <!-- Main scrollable content -->
+    <main class="main" id="main" role="main">
+      <div class="state-box"><p>Loading…</p></div>
+    </main>
+
+    <!-- Bottom navigation (mobile) -->
+    <nav class="bottom-nav" id="bottomNav" aria-label="Primary"></nav>
+
+    <!-- Search overlay -->
+    <div class="overlay" id="searchOverlay" aria-hidden="true">
+      <div class="ov-header">
+        <button type="button" class="icon-btn" id="searchClose" aria-label="Close search">
+          <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+        <input
+          class="ov-search-input"
+          id="searchInput"
+          type="search"
+          placeholder="Search for apps & games"
+          autocomplete="off"
+          enterkeyhint="search"
+        />
+        <button type="button" class="icon-btn" aria-label="Voice search" id="voiceBtn" style="opacity:.4" title="Not available">
+          <span class="material-symbols-outlined">mic</span>
+        </button>
+      </div>
+      <div class="suggest" id="searchResults"></div>
+    </div>
+
+    <!-- App detail overlay -->
+    <div class="overlay" id="detailOverlay" aria-hidden="true"></div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </div>
+
+  <!-- Firebase + App (ES modules) -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
